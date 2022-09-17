@@ -16,30 +16,27 @@ const redux = (state = 0, action) => {
 
 const store = createStore(redux);
 
+const inc = () => ({type: 'INC'});
+const dec = () => ({type: 'DEC'});
+const rnd = (payload) => ({type: 'RND', payload});
+
 document
   .getElementById('inc')
   .addEventListener('click', () => {
-    store.dispatch({
-      type: 'INC',
-    });
+    store.dispatch(dec());
   });
 
 document
   .getElementById('dec')
   .addEventListener('click', () => {
-    store.dispatch({
-      type: 'DEC',
-    });
+    store.dispatch(inc());
   });
 
 document
   .getElementById('rnd')
   .addEventListener('click', () => {
     const payload = Math.floor(Math.random() * 100);
-    store.dispatch({
-      type: 'RND',
-      payload: payload,
-    });
+    store.dispatch(rnd(payload));
   });
 
 const update = () => {
