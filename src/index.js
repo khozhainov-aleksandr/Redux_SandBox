@@ -1,42 +1,27 @@
 import { legacy_createStore as createStore} from 'redux'
-
-const redux = (state = 0, action) => {
-  switch (action.type) {
-    case 'INC':
-      return state + 1;
-    case 'DEC':
-      return state - 1;
-    case 'RND':
-      return state + action.payload;
-  
-    default:
-      return state;
-  }
-}
+import { inc, dec, rnd } from './actions';
+import { redux } from './reducer';
 
 const store = createStore(redux);
-
-const inc = () => ({type: 'INC'});
-const dec = () => ({type: 'DEC'});
-const rnd = (payload) => ({type: 'RND', payload});
+const { dispatch } = store;
 
 document
   .getElementById('inc')
   .addEventListener('click', () => {
-    store.dispatch(dec());
+    dispatch(dec());
   });
 
 document
   .getElementById('dec')
   .addEventListener('click', () => {
-    store.dispatch(inc());
+    dispatch(inc());
   });
 
 document
   .getElementById('rnd')
   .addEventListener('click', () => {
     const payload = Math.floor(Math.random() * 100);
-    store.dispatch(rnd(payload));
+    dispatch(rnd(payload));
   });
 
 const update = () => {
