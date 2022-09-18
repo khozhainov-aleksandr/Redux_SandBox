@@ -1,4 +1,4 @@
-export const redux = (state = 23, action) => {
+export const redux = (state = 32, action) => {
   switch (action.type) {
     case 'INC':
       return state + 1;
